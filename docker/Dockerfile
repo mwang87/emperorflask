@@ -1,4 +1,9 @@
 FROM cdiener/qiime-docker
 
-RUN apt-get install vim
+USER root
+
+RUN apt-get update
+RUN apt-get -y install vim
 RUN conda install --yes --quiet flask
+
+USER jovyan
