@@ -16,27 +16,29 @@ app = Flask(__name__)
 @app.route("/")
 def homepage():
     try:
-        metadata_url = request.args["metadata"]
-        #biom_url = request.args["biom"]
+        #metadata_url = request.args["metadata"]
+        biom_url = request.args["biom"]
     except:
         return "ERROR"
 
 
-    temporary_metadata_file = tempfile.NamedTemporaryFile(delete=False)
-    temporary_metadata_file.close()
-    urllib.urlretrieve(metadata_url, temporary_metadata_file.name)
+    #temporary_metadata_file = tempfile.NamedTemporaryFile(delete=False)
+    #temporary_metadata_file.close()
+    #urllib.urlretrieve(metadata_url, temporary_metadata_file.name)
 
-    r = requests.get(metadata_url)
-    print(r.text)
+    temporary_biom_file = tempfile.NamedTemporaryFile(delete=False)
+    temporary_biom_file.close()
+    urllib.urlretrieve(biom_url, temporary_biom_file.name)
 
-    print(metadata_url)
-
+    temporary_betadiversity = tempfile.NamedTemporaryFile(delete=False)
+    temporary_betadiversity.close()
+    cmd = "beta_diversity.py -i %s -m gower -o %s" % (temporary_biom_file.name, temporary_betadiversity.name)
 
     #Cleaning up temporary files
     #os.unlink(temporary_metadata_file.name)
 
 
-    return temporary_metadata_file.name
+    #return temporary_metadata_file.name
 
 
     return "NONE"
