@@ -49,7 +49,7 @@ def homepage():
 
     """Make Emprorer"""
     emperor_folder = os.path.join(SCRATCH_FOLDER, str(uuid.uuid4()))
-    cmd = "make_emperor.py -i %s -m %s -o %s" % (temporary_pcoa_file.name, temporary_metadata_file.name, emperor_folder)
+    cmd = "make_emperor.py -i %s -m %s -o %s --ignore_missing_samples" % (temporary_pcoa_file.name, temporary_metadata_file.name, emperor_folder)
     os.system(cmd)
 
     path_to_emporer_html = os.path.join(emperor_folder, "index.html")
