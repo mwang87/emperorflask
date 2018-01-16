@@ -17,7 +17,7 @@ def homepage():
     except:
         return "ERROR"
 
-    beta_diversity_distance_metric = "gower"
+    beta_diversity_distance_metric = "jaccard"
     if "distance_metric" in request.args:
         beta_diversity_distance_metric = request.args["distance_metric"]
 
