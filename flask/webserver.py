@@ -26,6 +26,7 @@ def homepage():
     temporary_metadata_file = tempfile.NamedTemporaryFile(delete=False)
     temporary_metadata_file.close()
     urllib.urlretrieve(metadata_url, temporary_metadata_file.name)
+    print(temporary_metadata_file.name)
 
     temporary_biom_file = tempfile.NamedTemporaryFile(delete=False)
     temporary_biom_file.close()
