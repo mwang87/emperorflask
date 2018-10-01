@@ -26,11 +26,12 @@ def homepage():
     temporary_metadata_file = tempfile.NamedTemporaryFile(delete=False)
     temporary_metadata_file.close()
     urllib.urlretrieve(metadata_url, temporary_metadata_file.name)
-    print(temporary_metadata_file.name)
+    print("Metadata", temporary_metadata_file.name)
 
     temporary_biom_file = tempfile.NamedTemporaryFile(delete=False)
     temporary_biom_file.close()
     urllib.urlretrieve(biom_url, temporary_biom_file.name)
+    print("biom", temporary_biom_file.name)
 
     """Input file validation"""
     cmd = "validate_mapping_file.py -m %s -o validate_mapping_file_output"
@@ -57,6 +58,6 @@ def homepage():
     return open(path_to_emporer_html).read()
 
 
-
-
-    return "NONE"
+@app.route("/heartbeat")
+def heartbeat():
+    return "{}"
